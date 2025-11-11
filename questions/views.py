@@ -1,4 +1,3 @@
-# questions/views.py
 import json
 import uuid
 from django.http import JsonResponse
@@ -93,7 +92,7 @@ class QuestionDetailView(View):
         except Question.DoesNotExist:
             return JsonResponse({"error": "Question not found"}, status=404)
 
-        question.delete()  # ← каскад сработает!
+        question.delete() 
         return JsonResponse({"status": "deleted"}, status=204)
 
 @method_decorator(csrf_exempt, name='dispatch')

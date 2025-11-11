@@ -3,13 +3,13 @@ POST http://localhost:8000/questions/
 Content-Type: application/json
 
 {
-  "text": "Как дела?"
+  "text": "Как делaaaа?"
 }
 
 ### 2. Получить список вопросов
 GET http://localhost:8000/questions/
 
-### 3. Добавить ответ к вопросу (подставь свой ID от шага 1)
+### 3. Добавить ответ к вопросу
 POST http://localhost:8000/questions/1/answers/
 Content-Type: application/json
 
