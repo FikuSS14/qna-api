@@ -1,0 +1,28 @@
+### 1. Создать вопрос
+POST http://localhost:8000/questions/
+Content-Type: application/json
+
+{
+  "text": "Как дела?"
+}
+
+### 2. Получить список вопросов
+GET http://localhost:8000/questions/
+
+### 3. Добавить ответ к вопросу (подставь свой ID от шага 1)
+POST http://localhost:8000/questions/1/answers/
+Content-Type: application/json
+
+{
+  "user_id": "123e4567-e89b-12d3-a456-426614174000",
+  "text": "Отлично, спасибо!"
+}
+
+### 4. Получить вопрос с ответами
+GET http://localhost:8000/questions/1/
+
+### 5. Удалить вопрос (каскадно удалятся и ответы)
+DELETE http://localhost:8000/questions/1/
+
+### 6. Убедиться, что вопрос удалён
+GET http://localhost:8000/questions/1/

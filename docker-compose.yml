@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: qna_docker
+      POSTGRES_USER: qna_user
+      POSTGRES_PASSWORD: qna_pass
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      DB_NAME: qna_docker
+      DB_USER: qna_user
+      DB_PASSWORD: qna_pass
+      DB_HOST: db
+      DB_PORT: 5432
+    depends_on:
+      - db
+    volumes:
+      - .:/app
+
+volumes:
+  postgres_data: {}
