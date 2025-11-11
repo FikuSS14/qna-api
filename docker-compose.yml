@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   db:
     image: postgres:15
@@ -11,6 +9,11 @@ services:
       - "5433:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U qna_user -d qna_docker"]
+      interval: 2s
+      timeout: 5s
+      retries: 10
 
   web:
     build: .
@@ -21,11 +24,17 @@ services:
       DB_USER: qna_user
       DB_PASSWORD: qna_pass
       DB_HOST: db
-      DB_PORT: 5432
+      SECRET_KEY: "django-insecure-change-in-production-1234567890"
+      DEBUG: "1"
+      ALLOWED_HOSTS: "localhost,127.0.0.1"
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     volumes:
       - .:/app
+    command: >
+      sh -c "python manage.py migrate --no-input &&
+             python manage.py runserver 0.0.0.0:8000"
 
 volumes:
-  postgres_data: {}
+  postgres_data:
