@@ -1,7 +1,7 @@
 # Q&A API
 
 Тестовое задание: API-сервис для вопросов и ответов.  
-**Полностью self-contained: достаточно `git clone && docker-compose up` — и всё работает.**
+**Полностью self-contained: достаточно `git clone && docker-compose up` - и всё работает.**
 
 > Соответствует ТЗ: Django, ORM, PostgreSQL, Docker, миграции, тесты, каскадное удаление.  
 > Работает «из коробки» - проверено на чистой машине.
@@ -9,6 +9,7 @@
 ---
 
 ## Структура проекта
+```
 qna-api/ 
 ├── .env.example # образец .env 
 ├── .gitignore
@@ -19,18 +20,19 @@ qna-api/
 ├── qna/ # Django config
 ├── questions/ # Приложение: модели, views, тесты
 └──tests/integration/ # Интеграционные тесты (requests)
+```
 
 ---
 
 ## Быстрый старт (проверено на Windows)
-# Установите зависимости для тестов
+### Установить зависимости для тестов
 pip install -r requirements.txt
-### Клонируйте репозиторий
+### Клонировать репозиторий
 git clone https://github.com/FikuSS14/qna-api.git
 cd qna-api
-### Создайте .env из шаблона
+### Создать .env из шаблона
 Copy-Item .env.example .env
-### Запустите проект
+### Запустить проект
 docker-compose up --build
 
 ---
@@ -58,7 +60,7 @@ web наследует переменные через environment в docker-com
 
 ---
 
-# Тестирование
+## Тестирование
 ### Запустить тесты в изолированной среде
 docker-compose run --rm web python manage.py test
 - Тесты проверяют: 
@@ -68,10 +70,10 @@ docker-compose run --rm web python manage.py test
 
 ---
 
-# Остановить контейнеры (данные БД сохраняются)
+### Остановить контейнеры (данные БД сохраняются)
 docker-compose down
 
-# Полный сброс (включая БД)
+### Полный сброс (включая БД)
 docker-compose down -v
 
 ---
