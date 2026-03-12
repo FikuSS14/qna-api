@@ -29,6 +29,7 @@ qna-api/
 pip install -r requirements.txt
 ### Клонировать репозиторий
 git clone https://github.com/FikuSS14/qna-api.git
+
 cd qna-api
 ### Создать .env из шаблона
 Copy-Item .env.example .env
